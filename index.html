@@ -64,7 +64,7 @@ D=D||{};["duties","files","equip","people"].forEach(function(k){D[k]=D[k]||[]});
 function save(){try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){alert("พื้นที่เก็บข้อมูลเต็ม ลบรูปหรือไฟล์เก่าออกก่อน")}}
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function $(q){return document.querySelector(q)}
-var tab=0,TABS=["① หน้าที่","② อุปกรณ์","③ ความถี่ / แปลนเรือ","④ กำลังพล","⑤ ข่ายสื่อสาร","⑥ ช่อง/คู่มือ","⑦ ความรู้ทหารเรือ"];
+var tab=0,TABS=["① Operation Sc","② Equipment","③ Position","④ Personnel","⑤ Communication","⑥ Communication In.","⑦ TH NAVY"];
 function go(i){tab=i;[renderDuty,renderEquip,renderFreq,renderPeople,renderNet,renderChan,renderKnow][i]();nav()}
 function nav(){$("#nav").innerHTML=TABS.map(function(t,i){return '<button class="'+(i==tab?"on":"")+'" onclick="go('+i+')">'+t+'</button>'}).join("")}
 function img(file,max){return new Promise(function(res){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;var cx=c.getContext("2d");cx.fillStyle="#fff";cx.fillRect(0,0,c.width,c.height);cx.drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.72))};im.src=r.result};r.readAsDataURL(file)})}
